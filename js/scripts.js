@@ -10,12 +10,12 @@ pickRock.addEventListener('click', function() { playerPick('rock') });
 pickPaper.addEventListener('click', function() { playerPick('paper') });
 pickScissors.addEventListener('click', function() { playerPick('scissors') });
 
-var gameState = 'notStarted',  //started // ended
-    player = {
+var gameState = 'notStarted';  //started // ended
+var player = {
         name: '',
         score: 0
-    },
-    computer = {
+    };
+var computer = {
         score: 0
     };
 
@@ -102,6 +102,8 @@ function checkRoundWinner(playerPick, computerPick) {
         computerResultElem.innerHTML = "Win!";
         computer.score++;
     }
+    setGamePoints();
+    checkGameWinner();
 }
 
 function setGamePoints() {
@@ -109,7 +111,15 @@ function setGamePoints() {
     computerPointsElem.innerHTML = computer.score;
 }
 
-// funkcja nie aktualizuje mi wyniku na elementach strony
+function checkGameWinner() {
+    if (player.score == 10) {
+    alert('You win, congratulation!');
+    gameState = 'ended';
+    } else if (computer.score == 10){
+    alert('Computer win');
+    gameState = 'ended';
+    console.log('zmiana game state');
+    }
 
-console.log(player.score);
-console.log(computer.score);
+    setGameElements()
+}
