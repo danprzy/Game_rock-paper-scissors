@@ -1,4 +1,5 @@
 // Variables
+debugger
 var newGameBtn = document.getElementById('js-newGameButton');
 
 var pickRock = document.getElementById('js-playerPick_rock');
@@ -14,6 +15,7 @@ var computer = {
         score: 0
     };
 
+
 var newGameElem = document.getElementById('js-newGameElement');
 var pickElem = document.getElementById('js-playerPickElement');
 var resultsElem = document.getElementById('js-resultsTableElement');
@@ -27,6 +29,10 @@ var computerPickElem = document.getElementById('js-computerPick');
 var playerResultElem = document.getElementById('js-playerResult');
 var computerResultElem = document.getElementById('js-computerResult');
 
+var gameWinnerResult = document.getElementById('js-gameWinnerResult'); //new
+
+var playerImage = document.getElementById('js-playerPickImage');
+var computerImage = document.getElementById('js-computerPickImage');
 // Events
 
 newGameBtn.addEventListener('click', newGame);
@@ -46,6 +52,7 @@ function setGameElements() {
       break;
     case 'ended':
         newGameBtn.innerText = 'Jeszcze raz';
+     //   gameWinnerResult.innerHTML = ''; //new
     case 'notStarted':
     default:
         newGameElem.style.display = 'block';
@@ -58,6 +65,7 @@ setGameElements();
 
 function newGame() {
   player.name = prompt('Please enter your name', 'imię gracza');
+
   if (player.name) {
     player.score = computer.score = 0;
     gameState = 'started';
@@ -65,6 +73,8 @@ function newGame() {
 
     playerNameElem.innerHTML = player.name;
     setGamePoints(); 
+
+    
   }
 }
 
@@ -89,12 +99,14 @@ function playerPick(playerPick) {
 function checkRoundWinner(playerPick, computerPick) {
   playerResultElem.innerHTML = computerResultElem.innerHTML = '';
 
+
   var winnerIs = 'player';
 
     if (playerPick == computerPick) {
         winnerIs = 'noone'; // remis
         playerResultElem.innerHTML = "Draw!";
         computerResultElem.innerHTML = "Draw!";
+
     } else if (
         (computerPick == 'rock' &&  playerPick == 'scissors') ||
         (computerPick == 'scissors' &&  playerPick == 'paper') ||
@@ -111,21 +123,61 @@ function checkRoundWinner(playerPick, computerPick) {
         computer.score++;
     }
     setGamePoints();
+    setPickPlayerImage();
+    setPickComputerImage();
     checkGameWinner();
 }
 
-function setGamePoints() {
+function setGamePoints(playerPick) {
     playerPointsElem.innerHTML = player.score;
     computerPointsElem.innerHTML = computer.score;
+
 }
 
 function checkGameWinner() {
     if (player.score == 10) {
-        alert('You win, congratulation!');
+    //gameWinnerResult.innerHTML = "You win! Congratulation"; //New
+        alert('You win');
         gameState = 'ended';
     } else if (computer.score == 10){
+    //gameWinnerResult.innerHTML = "Computer win"; //New
         alert('Computer win');
         gameState = 'ended';
     }
-    setGameElements()
+    
+    setGameElements();
 }
+
+
+
+function setPickPlayerImage(playerPick) {
+    
+   playerImage.innerHTML = ''; 
+              
+    if (playerPick == 'rock') {
+        playerImage.innerHTML = "<img src = images/rock.jpg>";
+    
+    } else if (playerPick == 'scissors') {
+        playerImage.innerHTML = "<img src = images/scissor.jpg>";
+
+    } else {
+        playerImage.innerHTML = "<img src = images/paper.jpg>";
+    }
+}
+
+
+function setPickComputerImage(computerPick) {
+   
+    computerImage.innerHTML = '';
+
+    if (computerPick === 'rock') {
+        computerImage.innerHTML = "<img src = images/rock.jpg>";
+    
+    } else if (computerPick === 'scissors') {
+        computerImage.innerHTML = "<img src = images/scissor.jpg>";
+
+    } else {
+        computerImage.innerHTML = "<img src = images/paper.jpg>";
+    }
+}
+

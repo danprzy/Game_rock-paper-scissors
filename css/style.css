@@ -1,4 +1,19 @@
+* {
+	border: 0px solid red;
+}
+
 .new_game {
   padding: 20px 0;
 }
-/*# sourceMappingURL=style.css.map */
+
+#js-computerResult, #js-playerResult {
+	color: green;
+	font-size: 20px;
+	font-weight: 700;
+}
+
+
+
+#js-playerPickImage, #js-computerPickImage {
+	height: 50px;
+}
