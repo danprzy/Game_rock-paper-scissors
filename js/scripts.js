@@ -123,8 +123,8 @@ function checkRoundWinner(playerPick, computerPick) {
         computer.score++;
     }
     setGamePoints();
-    setPickPlayerImage();
-    setPickComputerImage();
+    setPickPlayerImage(playerPick);
+    setPickComputerImage(computerPick);
     checkGameWinner();
 }
 
