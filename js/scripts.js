@@ -1,19 +1,19 @@
 // Variables
-debugger
+
 var newGameBtn = document.getElementById('js-newGameButton');
 
 var pickRock = document.getElementById('js-playerPick_rock');
 var pickPaper = document.getElementById('js-playerPick_paper');
 var pickScissors = document.getElementById('js-playerPick_scissors');
 
-var gameState = 'notStarted';  //started // ended
+var gameState = 'notStarted'; //started // ended
 var player = {
-        name: '',
-        score: 0
-    };
+    name: '',
+    score: 0
+};
 var computer = {
-        score: 0
-    };
+    score: 0
+};
 
 
 var newGameElem = document.getElementById('js-newGameElement');
@@ -33,58 +33,64 @@ var gameWinnerResult = document.getElementById('js-gameWinnerResult'); //new
 
 var playerImage = document.getElementById('js-playerPickImage');
 var computerImage = document.getElementById('js-computerPickImage');
+var gameWinnerInfo = document.getElementById('js-gameWinnerInfo');
+var gameOver = document.getElementById('js-gameOver');
 // Events
 
 newGameBtn.addEventListener('click', newGame);
 
-pickRock.addEventListener('click', function() { playerPick('rock') });
-pickPaper.addEventListener('click', function() { playerPick('paper') });
-pickScissors.addEventListener('click', function() { playerPick('scissors') });
+pickRock.addEventListener('click', function() {
+    playerPick('rock');
+});
+pickPaper.addEventListener('click', function() {
+    playerPick('paper');
+});
+pickScissors.addEventListener('click', function() {
+    playerPick('scissors');
+});
 
 // Functions
 
 function setGameElements() {
-  switch(gameState) {
-    case 'started':
-        newGameElem.style.display = 'none';
-        pickElem.style.display = 'block';
-        resultsElem.style.display = 'block';
-      break;
-    case 'ended':
-        newGameBtn.innerText = 'Jeszcze raz';
-     //   gameWinnerResult.innerHTML = ''; //new
-    case 'notStarted':
-    default:
-        newGameElem.style.display = 'block';
-        pickElem.style.display = 'none';
-        resultsElem.style.display = 'none';
-  }
+    switch (gameState) {
+        case 'started':
+            newGameElem.style.display = 'none';
+            pickElem.style.display = 'block';
+            resultsElem.style.display = 'block';
+            break;
+        case 'ended':
+            newGameBtn.innerText = 'Jeszcze raz';
+            //   gameWinnerResult.innerHTML = ''; //new
+        case 'notStarted':
+        default:
+            newGameElem.style.display = 'block';
+            pickElem.style.display = 'none';
+            resultsElem.style.display = 'none';
+    }
 }
 
 setGameElements();
 
 function newGame() {
-  player.name = prompt('Please enter your name', 'imię gracza');
+    player.name = prompt('Please enter your name', 'imię gracza');
 
-  if (player.name) {
-    player.score = computer.score = 0;
-    gameState = 'started';
-    setGameElements();
+    if (player.name) {
+        player.score = computer.score = 0;
+        gameState = 'started';
+        setGameElements();
 
-    playerNameElem.innerHTML = player.name;
-    setGamePoints(); 
-
-    
-  }
+        playerNameElem.innerHTML = player.name;
+        setGamePoints();
+    }
 }
 
 function playerPick(playerPick) {
-   console.log(playerPick);
+    console.log(playerPick);
 }
 
 function getComputerPick() {
     var possiblePicks = ['rock', 'paper', 'scissors'];
-    return possiblePicks[Math.floor(Math.random()*3)];
+    return possiblePicks[Math.floor(Math.random() * 3)];
 }
 
 function playerPick(playerPick) {
@@ -97,10 +103,10 @@ function playerPick(playerPick) {
 }
 
 function checkRoundWinner(playerPick, computerPick) {
-  playerResultElem.innerHTML = computerResultElem.innerHTML = '';
+    playerResultElem.innerHTML = computerResultElem.innerHTML = '';
 
 
-  var winnerIs = 'player';
+    var winnerIs = 'player';
 
     if (playerPick == computerPick) {
         winnerIs = 'noone'; // remis
@@ -108,9 +114,9 @@ function checkRoundWinner(playerPick, computerPick) {
         computerResultElem.innerHTML = "Draw!";
 
     } else if (
-        (computerPick == 'rock' &&  playerPick == 'scissors') ||
-        (computerPick == 'scissors' &&  playerPick == 'paper') ||
-        (computerPick == 'paper' &&  playerPick == 'rock')) {
+        (computerPick == 'rock' && playerPick == 'scissors') ||
+        (computerPick == 'scissors' && playerPick == 'paper') ||
+        (computerPick == 'paper' && playerPick == 'rock')) {
 
         winnerIs = 'computer';
     }
@@ -135,31 +141,33 @@ function setGamePoints(playerPick) {
 }
 
 function checkGameWinner() {
-    if (player.score == 10) {
-    //gameWinnerResult.innerHTML = "You win! Congratulation"; //New
-        alert('You win');
-        gameState = 'ended';
-    } else if (computer.score == 10){
-    //gameWinnerResult.innerHTML = "Computer win"; //New
-        alert('Computer win');
-        gameState = 'ended';
+    if (player.score === 10) {
+        $('#myModal').modal('show');
+        gameWinnerInfo.innerHTML = "You win! Congratulation";
+        $('#js-gameOver').click(function() { // needs to be fixed
+            gameState = 'ended'; // needs to be fixed
+        });
+
+    } else if (computer.score === 10) {
+        $('#myModal').modal('show');
+        gameWinnerInfo.innerHTML = "Computer win";
+        $('#js-gameOver').click(function() { // needs to be fixed
+            gameState = 'ended'; // needs to be fixed
+        });
     }
-    
     setGameElements();
 }
 
 
 
 function setPickPlayerImage(playerPick) {
-    
-   playerImage.innerHTML = ''; 
-              
+
+    playerImage.innerHTML = '';
+
     if (playerPick == 'rock') {
         playerImage.innerHTML = "<img src = images/rock.jpg>";
-    
     } else if (playerPick == 'scissors') {
         playerImage.innerHTML = "<img src = images/scissor.jpg>";
-
     } else {
         playerImage.innerHTML = "<img src = images/paper.jpg>";
     }
@@ -167,17 +175,14 @@ function setPickPlayerImage(playerPick) {
 
 
 function setPickComputerImage(computerPick) {
-   
+
     computerImage.innerHTML = '';
 
     if (computerPick === 'rock') {
         computerImage.innerHTML = "<img src = images/rock.jpg>";
-    
     } else if (computerPick === 'scissors') {
         computerImage.innerHTML = "<img src = images/scissor.jpg>";
-
     } else {
         computerImage.innerHTML = "<img src = images/paper.jpg>";
     }
 }
-

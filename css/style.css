@@ -17,3 +17,9 @@
 #js-playerPickImage, #js-computerPickImage {
 	height: 50px;
 }
+
+p {
+	text-align: justify;
+	padding: 20px;
+	font-weight: 700;
+}
