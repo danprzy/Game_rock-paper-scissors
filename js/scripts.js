@@ -144,18 +144,20 @@ function checkGameWinner() {
     if (player.score === 10) {
         $('#myModal').modal('show');
         gameWinnerInfo.innerHTML = "You win! Congratulation";
-        $('#js-gameOver').click(function() { // needs to be fixed
-            gameState = 'ended'; // needs to be fixed
+        $('#js-gameOver').click(function() {
+            setGameElements(gameState = 'ended');
         });
-
+        //  $('#myModal').on('hidden.bs.modal', function() {
+        //    setGameElements(gameState = 'ended');
+        // });
     } else if (computer.score === 10) {
         $('#myModal').modal('show');
         gameWinnerInfo.innerHTML = "Computer win";
-        $('#js-gameOver').click(function() { // needs to be fixed
-            gameState = 'ended'; // needs to be fixed
+        $('#js-gameOver').click(function() {
+            setGameElements(gameState = 'ended');
         });
+        //  setGameElements();
     }
-    setGameElements();
 }
 
 
