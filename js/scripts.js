@@ -145,16 +145,19 @@ function checkGameWinner() {
         $('#myModal').modal('show');
         gameWinnerInfo.innerHTML = "You win! Congratulation";
         $('#js-gameOver').click(function() {
-            setGameElements(gameState = 'ended');
+            gameState = 'ended';
+            setGameElements();
         });
-        //  $('#myModal').on('hidden.bs.modal', function() {
-        //    setGameElements(gameState = 'ended');
+        // or $('#myModal').on('hidden.bs.modal', function() {
+        //    gameState = 'ended';
+        //    setGameElements();
         // });
     } else if (computer.score === 10) {
         $('#myModal').modal('show');
         gameWinnerInfo.innerHTML = "Computer win";
         $('#js-gameOver').click(function() {
-            setGameElements(gameState = 'ended');
+            gameState = 'ended';
+            setGameElements();
         });
         //  setGameElements();
     }
