@@ -2,7 +2,7 @@
 > Simple version of Rock, Paper, Scissors build with vanilla JavaScript.
 
 ## Live Demo
-
+https://danprzy.github.io/Game_rock-paper-scissors/
 
 ## Technologies
 * HTML5
