@@ -148,7 +148,7 @@ function checkGameWinner() {
             gameState = 'ended';
             setGameElements();
         });
-        // or $('#myModal').on('hidden.bs.modal', function() {
+        //  $('#myModal').on('hidden.bs.modal', function() {
         //    gameState = 'ended';
         //    setGameElements();
         // });
