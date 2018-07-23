@@ -83,7 +83,8 @@ function newGame() {
         setGamePoints();
     }
 }
- function playerPick(playerPick) {
+
+function playerPick(playerPick) {
     console.log(playerPick);
 }
 

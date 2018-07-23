@@ -1,25 +1,27 @@
 * {
-	border: 0px solid red;
+    border: 0px solid red;
 }
 
 .new_game {
-  padding: 20px 0;
+    padding: 20px 0;
 }
 
-#js-computerResult, #js-playerResult {
-	color: green;
-	font-size: 20px;
-	font-weight: 700;
+#js-computerResult,
+#js-playerResult {
+    color: green;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 
 
-#js-playerPickImage, #js-computerPickImage {
-	height: 50px;
+#js-playerPickImage,
+#js-computerPickImage {
+    height: 50px;
 }
 
 p {
-	text-align: justify;
-	padding: 20px;
-	font-weight: 700;
+    text-align: justify;
+    padding: 20px;
+    font-weight: 700;
 }
